@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CENAPOR - Centro de Formación Naval, Pesquero y Portuario</title>
+
+  <style>
+    :root {
+      --azul-oscuro: #003d73;
+      --azul-medio: #0067a6;
+      --azul-claro: #00a0d6;
+      --amarillo: #f5b437;
+      --fondo: #f4f7fb;
+      --texto: #1f2933;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--fondo);
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* -------- NAVBAR -------- */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #ffffffee;
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #dde4f0;
+    }
+
+    .navbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar-brand img {
+      height: 50px;
+      width: auto;
+    }
+
+    .navbar-brand-text {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--azul-oscuro);
+    }
+
+    .navbar-brand-text strong {
+      font-size: 0.95rem;
+    }
+
+    .navbar-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.9rem;
+    }
+
+    .navbar-links a {
+      padding-bottom: 3px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .navbar-links a:hover {
+      border-color: var(--amarillo);
+    }
+
+    .navbar-cta {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--azul-medio);
+      font-size: 0.85rem;
+      color: var(--azul-medio);
+    }
+
+    .navbar-toggle {
+      display: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    /* -------- HERO -------- */
+
+    header {
+      background:
+        linear-gradient(135deg, rgba(0,61,115,0.92), rgba(0,160,214,0.85)),
+        url("https://images.pexels.com/photos/799091/pexels-photo-799091.jpeg") no-repeat center/cover;
+      color: #fff;
+      padding: 80px 18px 90px;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-main h1 {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-main h1 span {
+      color: var(--amarillo);
+    }
+
+    .hero-subtitle {
+      font-size: 1.02rem;
+      margin-bottom: 8px;
+      opacity: 0.95;
+    }
+
+    .hero-tagline {
+      font-size: 0.98rem;
+      margin-bottom: 24px;
+      max-width: 520px;
+      opacity: 0.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 26px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--amarillo);
+      color: #1f2933;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: #ffffffaa;
+      color: #ffffff;
+    }
+
+    .btn-outline:hover {
+      background: #ffffff;
+      color: var(--azul-oscuro);
+    }
+
+    .hero-contact-info {
+      font-size: 0.92rem;
+      opacity: 0.9;
+    }
+
+    .hero-contact-info strong {
+      color: var(--amarillo);
+    }
+
+    .hero-logo-box {
+      text-align: center;
+    }
+
+    .hero-logo-box img {
+      width: 220px;
+      max-width: 80%;
+      height: auto;
+      margin-bottom: 14px;
+    }
+
+    .hero-logo-box p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    /* -------- SECCIONES GENERALES -------- */
+
+    section {
+      padding: 60px 18px;
+      background: #fff;
+    }
+
+    section:nth-of-type(odd) {
+      background: var(--fondo);
+    }
+
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    h2.section-title {
+      text-align: center;
+      color: var(--azul-oscuro);
+      margin-bottom: 8px;
+      font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      margin-bottom: 30px;
+      color: #6b7280;
+    }
+
+    p {
+      font-size: 0.96rem;
+    }
+
+    /* -------- PROGRAMAS -------- */
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 22px 20px;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+      border-top: 4px solid var(--azul-medio);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+      color: var(--azul-oscuro);
+    }
+
+    .card p {
+      font-size: 0.93rem;
+      color: #4b5563;
+    }
+
+    /* -------- POR QUÉ CENAPOR -------- */
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .why-item {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.05);
+    }
+
+    .why-icon {
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--azul-medio);
+      color: #fff;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .why-text {
+      font-size: 0.9rem;
+    }
+
+    /* -------- METODOLOGÍA / ADMISION -------- */
+
+    .cols-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 30px;
+      align-items: start;
+    }
+
+    .steps-box {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 20px 22px;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07);
+      border-left: 4px solid var(--azul-claro);
+    }
+
+    .steps-box p {
+      margin-bottom: 6px;
+      font-size: 0.94rem;
+    }
+
+    .steps-box p strong {
+      color: var(--azul-medio);
+    }
+
+    /* -------- CONTACTO -------- */
+
+    #contacto .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 26px;
+      margin-top: 10px;
+    }
+
+    .contact-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 22px 22px;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+    }
+
+    .contact-row {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .contact-label {
+      font-weight: bold;
+      color: var(--azul-oscuro);
+    }
+
+    .contact-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #e0f2ff;
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .whatsapp-badge {
+      background: #e0fbe2;
+    }
+
+    .whatsapp-badge span {
+      font-size: 1rem;
+    }
+
+    .contact-note {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-top: 6px;
+    }
+
+    .contact-cta {
+      margin-top: 16px;
+    }
+
+    .contact-cta .btn-primary {
+      width: 100%;
+      text-align: center;
+    }
+
+    .contact-extra {
+      font-size: 0.9rem;
+      color: #4b5563;
+      margin-top: 8px;
+    }
+
+    /* -------- FOOTER -------- */
+
+    footer {
+      background: var(--azul-oscuro);
+      color: #e5e7eb;
+      padding: 26px 18px 18px;
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    .footer-title {
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      max-width: 1120px;
+      margin: 12px auto 0;
+      border-top: 1px solid #1f3350;
+      padding-top: 8px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    /* -------- RESPONSIVE -------- */
+
+    @media (max-width: 900px) {
+      .hero-inner,
+      #contacto .contact-grid,
+      .cols-2,
+      .footer-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      header {
+        padding-top: 70px;
+        padding-bottom: 70px;
+      }
+
+      .hero-main h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 750px) {
+      .navbar-inner {
+        padding-inline: 14px;
+      }
+
+      .navbar-links {
+        position: absolute;
+        right: 0;
+        top: 60px;
+        background: #ffffff;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 18px 10px;
+        border-bottom-left-radius: 12px;
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+        min-width: 210px;
+        display: none;
+      }
+
+      .navbar-links.show {
+        display: flex;
+      }
+
+      .navbar-cta {
+        margin-top: 4px;
+      }
+
+      .navbar-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="navbar-brand">
+        <img src="logo-cenapor.png" alt="Logo CENAPOR">
+        <div class="navbar-brand-text">
+          <strong>CENAPOR</strong>
+          <span>Centro de Formación Naval, Pesquero y Portuario</span>
+        </div>
+      </div>
+
+      <div class="navbar-toggle" onclick="toggleMenu()">☰</div>
+
+      <div class="navbar-links" id="navbarLinks">
+        <a href="#sobre">Sobre CENAPOR</a>
+        <a href="#programas">Programas</a>
+        <a href="#metodologia">Metodología</a>
+        <a href="#admision">Admisión</a>
+        <a href="#contacto" class="navbar-cta">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <div class="hero-inner">
+      <div class="hero-main">
+        <h1>Formación técnica para la <span>gente de mar</span> y el sector portuario del Perú</h1>
+        <p class="hero-subtitle">
+          Centro especializado en formación naval, pesquera y portuaria.
+        </p>
+        <p class="hero-tagline">
+          Preparamos tripulantes, técnicos y operadores con disciplina, valores y competencias para desempeñarse en
+          embarcaciones, puertos y empresas pesqueras.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#programas" class="btn btn-primary">Ver programas de formación</a>
+          <a href="#contacto" class="btn btn-outline">Hablar con un asesor</a>
+        </div>
+
+        <div class="hero-contact-info">
+          <div><strong>WhatsApp:</strong> +51 901 237 616</div>
+          <div><strong>Teléfono de contacto:</strong> +51 901 237 616</div>
+        </div>
+      </div>
+
+      <div class="hero-logo-box">
+        <img src="logo-cenapor.png" alt="CENAPOR Logo">
+        <p>Formando profesionales para el mar, la pesca y los puertos del Perú.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- SOBRE CENAPOR -->
+  <section id="sobre">
+    <div class="section-inner">
+      <h2 class="section-title">¿Qué es CENAPOR?</h2>
+      <p class="section-subtitle">
+        Centro de formación técnica orientado al sector marítimo, pesquero y portuario.
+      </p>
+      <p>
+        CENAPOR es un centro de formación especializado en el área naval, pesquera y portuaria,
+        orientado a jóvenes y adultos que desean desarrollar una carrera en el sector marítimo y logístico del Perú.
+      </p>
+      <br />
+      <p>
+        Nuestro compromiso es formar profesionales con sólidos conocimientos técnicos, disciplina y ética,
+        preparados para enfrentar los retos del trabajo en embarcaciones, terminales portuarios y empresas pesqueras
+        a nivel nacional.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROGRAMAS -->
+  <section id="programas">
+    <div class="section-inner">
+      <h2 class="section-title">Programas de formación</h2>
+      <p class="section-subtitle">
+        Programas diseñados para responder a las necesidades reales del sector.
+      </p>
+
+      <div class="programs-grid">
+        <div class="card">
+          <h3>Técnico en Operaciones Pesqueras</h3>
+          <p>
+            Manejo de embarcaciones pesqueras, artes de pesca, normativa pesquera y seguridad a bordo
+            para el desarrollo de operaciones seguras y eficientes.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Técnico en Operaciones Portuarias</h3>
+          <p>
+            Formación en logística portuaria, carga y descarga, operaciones de patio, documentación
+            y procesos vinculados al comercio exterior.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Tripulante de Cubierta y Máquinas</h3>
+          <p>
+            Base naval para el trabajo en buques y embarcaciones, mantenimiento básico, maniobras,
+            seguridad y operación de equipos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ CENAPOR -->
+  <section>
+    <div class="section-inner">
+      <h2 class="section-title">¿Por qué elegir CENAPOR?</h2>
+      <p class="section-subtitle">
+        Una propuesta de formación alineada al sector marítimo y pesquero peruano.
+      </p>
+
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-icon">✓</div>
+          <div class="why-text">
+            Docentes con experiencia real en embarcaciones, puertos y empresas del sector.
+          </div>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon">✓</div>
+          <div class="why-text">
+            Formación práctica y orientada al desarrollo de competencias laborales.
+          </div>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon">✓</div>
+          <div class="why-text">
+            Enfoque en la realidad del sector marítimo y pesquero peruano.
+          </div>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon">✓</div>
+          <div class="why-text">
+            Acompañamiento al estudiante durante su proceso de formación.
+          </div>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon">✓</div>
+          <div class="why-text">
+            Horarios flexibles según disponibilidad del participante.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METODOLOGÍA Y ADMISION -->
+  <section id="metodologia">
+    <div class="section-inner cols-2">
+      <div>
+        <h2 class="section-title" style="text-align:left;">Nuestra metodología</h2>
+        <p style="margin-top:10px;">
+          CENAPOR combina teoría, práctica y simulación de escenarios reales del trabajo pesquero, naval y portuario.
+        </p>
+        <br />
+        <p>
+          Las sesiones están orientadas al aprendizaje activo: estudio de casos, ejercicios aplicados y
+          entrenamientos que permiten al estudiante aprender haciendo, preparándose para el mercado laboral
+          desde el primer día.
+        </p>
+      </div>
+
+      <div id="admision">
+        <h2 class="section-title" style="text-align:left;">Proceso de admisión</h2>
+        <div class="steps-box" style="margin-top:12px;">
+          <p><strong>1.</strong> Solicita información a través de WhatsApp o llamada.</p>
+          <p><strong>2.</strong> Elige el programa que mejor se adapta a tu perfil.</p>
+          <p><strong>3.</strong> Completa tu inscripción y matrícula.</p>
+          <p><strong>4.</strong> Recibe tu cronograma e inicia tus clases.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="section-inner">
+      <h2 class="section-title">Contacto e informes</h2>
+      <p class="section-subtitle">
+        Comunícate con nuestro equipo de admisión para recibir orientación personalizada.
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-row">
+            <span class="contact-label">WhatsApp:</span><br>
+            <span class="contact-highlight whatsapp-badge">
+              <span>📱</span> +51 901 237 616
+            </span>
+          </div>
+
+          <div class="contact-row">
+            <span class="contact-label">Teléfono de contacto:</span><br>
+            <span class="contact-highlight">
+              ☎️ +51 901 237 616
+            </span>
+          </div>
+
+          <div class="contact-row">
+            <span class="contact-label">Correo electrónico:</span><br>
+            cenaporperu@gmail.com
+          </div>
+
+          <div class="contact-row">
+            <span class="contact-label">Horario de atención:</span><br>
+            Lunes a sábado: 8:00 a.m. – 8:00 p.m.<br>
+            Domingo: 8:00 a.m. – 1:00 p.m.
+          </div>
+
+          <div class="contact-cta">
+            <a
+              class="btn btn-primary"
+              href="https://wa.me/51901237616?text=Hola%2C%20deseo%20informaci%C3%B3n%20sobre%20los%20programas%20de%20CENAPOR"
+              target="_blank"
+              rel="noopener"
+            >
+              Escribir por WhatsApp
+            </a>
+          </div>
+
+          <p class="contact-note">
+            Responderemos tu consulta lo antes posible con información sobre requisitos, costos y fechas de inicio.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-row">
+            <span class="contact-label">Ubicación:</span><br>
+            Áncash – Chimbote
+          </div>
+          <p class="contact-extra">
+            Contamos con programas orientados a la formación de personal para embarcaciones, terminales portuarios y
+            empresas vinculadas al sector marítimo-pesquero.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-title">CENAPOR</div>
+        <p>
+          Centro de Formación Naval, Pesquero y Portuario.<br>
+          Formando profesionales para el mar, la pesca y los puertos del Perú.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-title">Central de informes</div>
+        <p>WhatsApp / Teléfono: +51 901 237 616<br>Correo: cenaporperu@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © <span id="year"></span> CENAPOR. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script>
+    // Año dinámico en el footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Menú responsive
+    function toggleMenu() {
+      var links = document.getElementById("navbarLinks");
+      links.classList.toggle("show");
+    }
+  </script>
+</body>
+</html>
